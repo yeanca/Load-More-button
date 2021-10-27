@@ -1,0 +1,27 @@
+<h1>Load More Button Test</h1>
+
+<p>
+  Load More Button is disabled when there's nothing else to add to the Album
+  Array
+</p>
+<label for="name">How many Items do you want to display?</label>
+<input type="text" [(ngModel)]="number" />
+<button class="btn" (click)="loadList()">Load</button>
+<br />
+<br />
+<div *ngIf="number > 0">
+  Registered Album
+  <p>Showing {{ Album.length }} of {{ number }}</p>
+  <ul *ngFor="let al of Album; let i = index">
+    <li>{{ i + 1 }}. {{ al.title }}</li>
+  </ul>
+  <button class="btn" (click)="loadMore()" *ngIf="isArrEmpty == false">
+    Load more
+  </button>
+  <p *ngIf="isArrEmpty == true" style="color:red;">
+    This is the end of the list
+  </p>
+  <button class="btn" *ngIf="isArrEmpty == true" (click)="reset()">
+    Reset
+  </button>
+</div>
